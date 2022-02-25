@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ToDo</string>
+
+    <string name="welcome_name">Hello, %s.</string>
+    <string name="welcome_subtitle">Looks like feel good</string>
+    <string name="today_simicolon">TODAY: %s</string>
+    <string name="today">Today</string>
+    <plurals name="task_count">
+        <item quantity="one">You have %d task to do today.</item>
+        <item quantity="other">You have %d tasks to do today.</item>
+    </plurals>
+    <plurals name="task_count_header">
+        <item quantity="one">%d Task</item>
+        <item quantity="other">%d Tasks</item>
+    </plurals>
+
+    <string name="tomorrow">Tomorrow</string>
+    <string name="yesterday">Yesterday</string>
+</resources>

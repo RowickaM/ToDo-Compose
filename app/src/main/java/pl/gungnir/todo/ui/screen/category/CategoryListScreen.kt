@@ -3,10 +3,7 @@ package pl.gungnir.todo.ui.screen.category
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -54,8 +51,8 @@ fun CategoryListScreen(
             )
 
             LazyColumn(
-                modifier = Modifier
-                    .padding(top = 16.dp)
+                modifier = Modifier.padding(top = 16.dp),
+                contentPadding = PaddingValues(bottom = 48.dp)
             ) {
                 categoryTasks.value.forEach { (initial, elements) ->
                     stickyHeader {

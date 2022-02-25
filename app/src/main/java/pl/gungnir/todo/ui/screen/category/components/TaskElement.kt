@@ -51,7 +51,7 @@ fun TaskElement(
 
         Divider(
             modifier = Modifier.padding(top = 8.dp),
-            color = Gray
+            color = Gray.copy(alpha = 0.2f)
         )
     }
 }

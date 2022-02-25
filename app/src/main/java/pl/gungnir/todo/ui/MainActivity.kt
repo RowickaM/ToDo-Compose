@@ -6,9 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -53,7 +51,7 @@ class MainActivity : ComponentActivity() {
                                 navArgument(NavRoutes.CATEGORY_ID) {
                                     type = NavType.IntType
                                 }
-                            )
+                            ),
                         ) {
                             val categoryId = it.arguments?.getInt(NavRoutes.CATEGORY_ID) ?: -1
                             CategoryListScreen(categoryId = categoryId)
@@ -62,14 +60,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ToDoTheme {
-
     }
 }
 

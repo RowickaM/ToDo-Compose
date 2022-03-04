@@ -7,4 +7,5 @@ object NavRoutes {
     const val HOME = "home"
     const val CATEGORY = "category/{$CATEGORY_ID}"
     const val CATEGORY_ARG = "category/"
+    const val ADD = "add"
 }

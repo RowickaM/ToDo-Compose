@@ -1,12 +1,13 @@
 package pl.gungnir.todo.data.model
 
 import androidx.compose.ui.graphics.Color
+import pl.gungnir.todo.ui.theme.Blue
 
 data class Category(
-    val id: Int,
-    val name: String,
-    val todayTaskCount: Int,
-    val progress: Double,
-    val color: Color,
-    val tasks: ArrayList<Task>
+    val id: Int = -1,
+    val name: String = "",
+    val todayTaskCount: Int = -1,
+    val progress: Double = 0.0,
+    val color: Color = Blue,
+    val tasks: ArrayList<Task> = ArrayList()
 )

@@ -31,7 +31,8 @@ class ToDoRepositoryImpl : ToDoRepository {
         )
     }
 
-    override fun addTask(categoryId: Int, task: Task) {
+    override fun addTask(categoryId: Int, task: Task): Boolean {
+        categoryListMock.find { it.id == categoryId } ?: return false
         val newTask = task.copy(id = allTaskCount)
         when (categoryId) {
             0 -> categoryPersonalMock = addTaskToCategory(categoryPersonalMock, newTask)
@@ -40,6 +41,7 @@ class ToDoRepositoryImpl : ToDoRepository {
         }
 
         allTaskCount++
+        return true
     }
 
     private fun addTaskToCategory(category: Category, task: Task): Category {

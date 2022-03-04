@@ -8,6 +8,6 @@ interface ToDoRepository {
 
     fun getAllCategoryList(): List<CategoryList>
     fun getCategory(categoryId: Int): Category
-    fun addTask(categoryId: Int, task: Task)
+    fun addTask(categoryId: Int, task: Task): Boolean
     fun setStateTask(categoryId: Int, taskId: Int, isDone: Boolean)
 }

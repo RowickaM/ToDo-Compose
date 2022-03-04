@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pl.gungnir.todo.data.model.Task
@@ -45,7 +46,9 @@ fun TaskElement(
             Text(
                 modifier = modifier.padding(start = 8.dp),
                 text = task.name,
-                color = DarkGray
+                color = DarkGray,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
         }
 

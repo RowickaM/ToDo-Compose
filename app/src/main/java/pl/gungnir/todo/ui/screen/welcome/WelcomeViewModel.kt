@@ -1,6 +1,5 @@
 package pl.gungnir.todo.ui.screen.welcome
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
@@ -22,7 +21,6 @@ class WelcomeViewModel(
 
     private fun fetchCategoryList() {
         categoryList.value = getCategoryListUseCase.execute()
-        Log.d("MRMRMR", "categoryList.value ${categoryList.value}")
     }
 
     private fun calculateAllTaskInToday() {

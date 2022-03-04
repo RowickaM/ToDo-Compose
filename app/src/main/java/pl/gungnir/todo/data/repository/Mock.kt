@@ -23,7 +23,7 @@ val taskDone = Task(
     expiryDate = LocalDate.now()
 )
 
-val categoryListMock = listOf(
+var categoryListMock = listOf(
     CategoryList(
         id = 0,
         name = "Personal",

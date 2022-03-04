@@ -70,9 +70,27 @@ class ToDoRepositoryImpl : ToDoRepository {
 
     override fun setStateTask(categoryId: Int, taskId: Int, isDone: Boolean) {
         when (categoryId) {
-            0 -> categoryPersonalMock = editTaskToCategory(categoryPersonalMock, taskId, isDone)
-            1 -> categoryWorkMock = editTaskToCategory(categoryWorkMock, taskId, isDone)
-            else -> categoryHomeMock = editTaskToCategory(categoryHomeMock, taskId, isDone)
+            0 -> {
+                categoryPersonalMock = editTaskToCategory(categoryPersonalMock, taskId, isDone)
+                categoryListMock = updateCategoryListMock(
+                    categoryId,
+                    categoryPersonalMock.progress
+                )
+            }
+            1 -> {
+                categoryWorkMock = editTaskToCategory(categoryWorkMock, taskId, isDone)
+                categoryListMock = updateCategoryListMock(
+                    categoryId,
+                    categoryWorkMock.progress
+                )
+            }
+            else -> {
+                categoryHomeMock = editTaskToCategory(categoryHomeMock, taskId, isDone)
+                categoryListMock = updateCategoryListMock(
+                    categoryId,
+                    categoryHomeMock.progress
+                )
+            }
         }
     }
 
@@ -99,5 +117,17 @@ class ToDoRepositoryImpl : ToDoRepository {
         }
 
         return newCategory
+    }
+
+    private fun updateCategoryListMock(categoryId: Int, progress: Double): List<CategoryList> {
+        return categoryListMock.map {
+            if (it.id == categoryId) {
+                it.copy(
+                    progress = progress,
+                )
+            } else {
+                it
+            }
+        }
     }
 }

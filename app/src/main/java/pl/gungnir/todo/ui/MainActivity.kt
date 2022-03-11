@@ -21,7 +21,9 @@ import androidx.navigation.navArgument
 import pl.gungnir.todo.ui.screen.addTask.AddTaskScreen
 import pl.gungnir.todo.ui.screen.category.CategoryListScreen
 import pl.gungnir.todo.ui.screen.welcome.WelcomeScreen
+import pl.gungnir.todo.ui.theme.Blue
 import pl.gungnir.todo.ui.theme.ToDoTheme
+import pl.gungnir.todo.ui.theme.White
 import pl.gungnir.todo.util.naigation.NavRoutes
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -35,6 +37,9 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             val showFAB = remember { mutableStateOf(false) }
             val catId = remember { mutableStateOf(-1) }
+            val (color, onColorChange) = remember { mutableStateOf(Blue) }
+
+
 
             ToDoTheme {
                 Scaffold(
@@ -42,11 +47,13 @@ class MainActivity : ComponentActivity() {
                     floatingActionButton = {
                         if (showFAB.value) {
                             FloatingActionButton(
+                                backgroundColor = color,
                                 onClick = { navController.navigate(NavRoutes.ADD) }
                             ) {
                                 Icon(
                                     imageVector = Icons.Outlined.Add,
-                                    contentDescription = "add task"
+                                    contentDescription = "add task",
+                                    tint = White
                                 )
                             }
                         }
@@ -78,7 +85,10 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val categoryId = it.arguments?.getInt(NavRoutes.CATEGORY_ID) ?: -1
                             catId.value = categoryId
-                            CategoryListScreen(categoryId = categoryId)
+                            CategoryListScreen(
+                                onColorChange = onColorChange,
+                                categoryId = categoryId
+                            )
                             showFAB.value = true
                         }
 

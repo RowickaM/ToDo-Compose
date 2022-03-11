@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
 import pl.gungnir.todo.ui.components.targetItem.CategoryInfo
@@ -21,13 +22,14 @@ import pl.gungnir.todo.ui.screen.category.components.TaskElement
 fun CategoryListScreen(
     modifier: Modifier = Modifier,
     mViewModel: CategoryListViewModel = getViewModel(),
+    onColorChange: (Color) -> Unit,
     categoryId: Int
 ) {
     val categoryData = mViewModel.category
     val categoryTasks = mViewModel.categoryTasks
 
     LaunchedEffect(key1 = Unit) {
-        mViewModel.fetchCategory(categoryId)
+        mViewModel.fetchCategory(categoryId, onColorChange)
     }
 
     categoryData.value?.let { category ->

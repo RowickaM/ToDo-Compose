@@ -1,6 +1,7 @@
 package pl.gungnir.todo.ui.screen.category
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -18,9 +19,10 @@ class CategoryListViewModel(
     val category = mutableStateOf<Category?>(null)
     val categoryTasks = mutableStateOf(emptyMap<LocalDate, List<Task>>())
 
-    fun fetchCategory(categoryId: Int) {
+    fun fetchCategory(categoryId: Int, setColor: (Color) -> Unit = {}) {
         val category = getCategoryUseCase.execute(categoryId)
         this.category.value = category
+        setColor(category.color)
         spitTaskByDay(category)
 
     }

@@ -34,74 +34,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            val showFAB = remember { mutableStateOf(false) }
-            val catId = remember { mutableStateOf(-1) }
-            val (color, onColorChange) = remember { mutableStateOf(Blue) }
-
-
-
             ToDoTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     floatingActionButton = {
-                        if (showFAB.value) {
-                            FloatingActionButton(
-                                backgroundColor = color,
-                                onClick = { navController.navigate(NavRoutes.ADD) }
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.Add,
-                                    contentDescription = "add task",
-                                    tint = White
-                                )
-                            }
-                        }
+
                     }
                 ) { padding ->
-                    NavHost(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(padding),
-                        navController = navController,
-                        startDestination = NavRoutes.HOME
-                    ) {
-                        composable(NavRoutes.HOME) {
-                            showFAB.value = false
-                            WelcomeScreen(
-                                onClick = {
-                                    navController.navigate(route = NavRoutes.CATEGORY_ARG + it)
-                                }
-                            )
-                        }
 
-                        composable(
-                            route = NavRoutes.CATEGORY,
-                            arguments = listOf(
-                                navArgument(NavRoutes.CATEGORY_ID) {
-                                    type = NavType.IntType
-                                }
-                            ),
-                        ) {
-                            val categoryId = it.arguments?.getInt(NavRoutes.CATEGORY_ID) ?: -1
-                            catId.value = categoryId
-                            CategoryListScreen(
-                                onColorChange = onColorChange,
-                                categoryId = categoryId
-                            )
-                            showFAB.value = true
-                        }
-
-                        composable(
-                            route = NavRoutes.ADD
-                        ) {
-                            showFAB.value = false
-                            AddTaskScreen(
-                                categoryId = catId.value,
-                                onAddedTask = { navController.navigateUp() }
-                            )
-                        }
-                    }
                 }
             }
         }
